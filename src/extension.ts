@@ -1,35 +1,28 @@
 // Entry point for the extension.
 import * as vscode from 'vscode';
 import { Application } from './app/Application';
-import { CommandBuilder } from './app/formatter/CommandBuilder';
-import { Formatter } from './app/formatter/Formatter';
-import { OutputParser } from './app/formatter/OutputParser';
-import { ProcessManager } from './app/formatter/ProcessManager';
 import { ECSDocumentFormattingEditProvider } from './ECSDocumentFormattingEditProvider';
 import { logger } from './logger';
+import { Status } from './Status';
+import { l10n } from 'vscode';
 
 export async function activate(
-  _context: vscode.ExtensionContext,
+  context: vscode.ExtensionContext,
 ): Promise<void> {
   try {
     logger.info('Starting Easy Coding Standard extension activation');
 
-    const application = new Application(
-      new Formatter(
-        new ProcessManager(),
-        new CommandBuilder(),
-        new OutputParser(),
-      ),
-    );
+    const application = new Application();
+    const status = await Status.init();
 
-    // register formatter
     vscode.languages.registerDocumentFormattingEditProvider(
       {
         language: 'php',
         scheme: 'file',
       },
-      new ECSDocumentFormattingEditProvider(application),
+      new ECSDocumentFormattingEditProvider(application, status),
     );
+    context.subscriptions.push(status);
 
     logger.info('Easy Coding Standard extension activated successfully');
   } catch (error) {
@@ -37,13 +30,19 @@ export async function activate(
 
     const errorMessage = error instanceof Error ? error.message : String(error);
     vscode.window.showErrorMessage(
-      `Easy Coding Standard extension failed to activate: ${errorMessage}`,
+      l10n.t('error.failedToActivate', errorMessage),
     );
 
     throw error;
   }
 }
 
-export function deactivate(): void {
+export function deactivate(context: vscode.ExtensionContext): void {
+  context.subscriptions.forEach((subscription) => {
+    if (subscription instanceof Status) {
+      subscription.dispose();
+    }
+  });
+
   logger.info('Easy Coding Standard extension deactivated');
 }

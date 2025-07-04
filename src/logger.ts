@@ -1,74 +1,50 @@
 import * as vscode from 'vscode';
-import { conf } from './conf';
 
 class Logger {
-  private readonly outputChannel: vscode.OutputChannel;
+  private readonly logOutputChannel: vscode.LogOutputChannel;
 
-  private readonly logLevel: vscode.LogLevel;
-
-  constructor(logLevel?: vscode.LogLevel) {
-    this.outputChannel = vscode.window.createOutputChannel(conf.name, {
-      log: true,
-    });
-    this.logLevel = logLevel ?? vscode.LogLevel.Info;
+  constructor() {
+    this.logOutputChannel = vscode.window.createOutputChannel(
+      'Easy Coding Standard',
+      {
+        log: true,
+      },
+    );
   }
 
   show(preserveFocus?: boolean) {
-    this.outputChannel.show(preserveFocus);
+    this.logOutputChannel.show(preserveFocus);
   }
 
   debug(message: string, data?: unknown) {
-    this.log(message, vscode.LogLevel.Debug, data);
+    this.logOutputChannel.debug(this.formatData(message, data));
   }
 
   info(message: string, data?: unknown) {
-    this.log(message, vscode.LogLevel.Info, data);
+    this.logOutputChannel.info(this.formatData(message, data));
   }
 
   warn(message: string, data?: unknown) {
-    this.log(message, vscode.LogLevel.Warning, data);
+    this.logOutputChannel.warn(this.formatData(message, data));
   }
 
   error(message: string, error?: unknown) {
     const data = error instanceof Error ? error : { error };
 
-    this.log(message, vscode.LogLevel.Error, data);
+    this.logOutputChannel.error(this.formatData(message, data));
   }
 
   trace(message: string, data?: unknown) {
-    this.log(message, vscode.LogLevel.Trace, data);
+    this.logOutputChannel.trace(this.formatData(message, data));
   }
 
-  private log(message: string, logLevel: vscode.LogLevel, data?: unknown) {
-    const canLog =
-      logLevel <= this.logLevel && logLevel !== vscode.LogLevel.Off;
-
-    if (!canLog) {
-      return;
+  private formatData(message: string, data: unknown): string {
+    if (data === undefined) {
+      return message;
     }
 
-    this.outputChannel.appendLine(message);
-
-    if (data) {
-      try {
-        const dataMessage =
-          '\n' +
-          (this.isJsonString(data) ? data : JSON.stringify(data, null, 2));
-        this.outputChannel.appendLine(dataMessage);
-      } catch (error) {
-        this.outputChannel.appendLine(`Failed to stringify data: ${error}`);
-      }
-    }
-  }
-
-  private isJsonString(data: unknown): data is string {
-    try {
-      JSON.parse(data as string);
-      return true;
-    } catch {
-      return false;
-    }
+    return `${message}\n${JSON.stringify(data, null, 2)}`;
   }
 }
 
-export const logger = new Logger(conf.logLevel);
+export const logger = new Logger();

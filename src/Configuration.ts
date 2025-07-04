@@ -1,6 +1,5 @@
 import path from 'node:path';
 import { type Uri, workspace } from 'vscode';
-import { conf } from './conf';
 import { logger } from './logger';
 
 /**
@@ -12,32 +11,39 @@ export type ECSConfig = {
   enabled: boolean;
   executablePath: string;
   configPath: string;
-  clearCache?: boolean;
   memoryLimit?: string;
   xdebug?: boolean;
-  debug?: boolean;
   timeout: number;
+  extraArgs: string[];
 };
 
 export const getCurrentConfig = (workspaceUri: Uri): ECSConfig => {
-  const config = workspace.getConfiguration(conf.id, workspaceUri);
+  const config = workspace.getConfiguration(
+    'easy-coding-standard',
+    workspaceUri,
+  );
+  const memoryLimit = config.get<string>('memoryLimit') ?? '';
+  const xdebug = config.get<boolean>('xdebug', false);
 
-  return {
-    enabled: config.get('enabled', true),
+  const currentConfig = {
+    enabled: config.get<boolean>('enabled', true),
     executablePath: resolvePath(
-      config.get('executablePath', 'vendor/bin/ecs'),
+      config.get<string>('executablePath', 'vendor/bin/ecs'),
       workspaceUri.fsPath,
     ),
     configPath: resolvePath(
-      config.get('configPath', 'ecs.php'),
+      config.get<string>('configPath', 'ecs.php'),
       workspaceUri.fsPath,
     ),
-    clearCache: config.get('clearCache', undefined),
-    memoryLimit: config.get('memoryLimit'),
-    xdebug: config.get('xdebug', undefined),
-    debug: config.get('debug', undefined),
-    timeout: config.get('timeout', 30000),
+    memoryLimit: memoryLimit === '' ? undefined : memoryLimit,
+    xdebug: xdebug ? true : undefined,
+    timeout: config.get<number>('timeout', 30000),
+    extraArgs: config.get<string[]>('extraArgs', []),
   };
+
+  logger.debug('Loaded current ECS config', currentConfig);
+
+  return currentConfig;
 };
 
 const resolvePath = (targetPath: string, workspacePath: string): string => {

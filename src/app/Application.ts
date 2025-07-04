@@ -1,53 +1,70 @@
 import * as vscode from 'vscode';
-import { getCurrentConfig } from '../Configuration';
+import type { ECSConfig } from '../Configuration';
 import { logger } from '../logger';
-import type { Formatter } from './formatter';
+import type { Status } from '../Status';
+import { generateFormattedTextEdits } from './formatter/formatter';
+import { l10n } from 'vscode';
 
 export class Application {
-  constructor(private readonly formatter: Formatter) {}
-
   async generateTextEdits(
     document: vscode.TextDocument,
+    config: ECSConfig,
     cancellationToken: vscode.CancellationToken,
+    status: Status,
   ): Promise<vscode.TextEdit[]> {
-    if (document.languageId !== 'php') {
+    const isReady = await status.reloadReadyStatus(document, config);
+    if (!isReady) {
       return [];
     }
 
-    if (document.isUntitled) {
-      logger.warn('Cannot format untitled document');
-      return [];
-    }
+    const { abortSignal, onCancellationRequested } =
+      await this.prepareAbortSignal(cancellationToken);
 
     try {
-      const workspaceFolder = vscode.workspace.getWorkspaceFolder(document.uri);
-      if (!workspaceFolder) {
-        throw new Error('File is not part of a workspace');
-      }
-
-      const config = getCurrentConfig(workspaceFolder.uri);
-      if (!config) {
-        throw new Error('No config found for workspace folder');
-      }
-
-      const textEdits = await this.formatter.run(
+      status.formatting();
+      const textEdits = await generateFormattedTextEdits(
         document,
-        cancellationToken,
-        workspaceFolder,
         config,
+        abortSignal,
       );
+      status.completed();
+      logger.info('Formatting process completed successfully');
 
-      logger.info(
-        `Generated ${textEdits.length} TextEdits for document formatting`,
-      );
       return textEdits;
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
+
+      status.error(errorMessage);
       logger.error('Failed to format document', error);
 
-      vscode.window.showErrorMessage(`ECS formatting failed: ${errorMessage}`);
+      vscode.window.showErrorMessage(
+        l10n.t('error.failedToFormat', errorMessage),
+      );
       return [];
+    } finally {
+      onCancellationRequested.dispose();
     }
+  }
+
+  private async prepareAbortSignal(
+    cancellationToken: vscode.CancellationToken,
+  ): Promise<{
+    abortSignal: AbortSignal;
+    onCancellationRequested: vscode.Disposable;
+  }> {
+    const abortController = new AbortController();
+
+    const onCancellationRequested = cancellationToken.onCancellationRequested(
+      () => {
+        logger.info('ECS formatting was cancelled');
+        abortController.abort();
+      },
+    );
+
+    return {
+      abortSignal: abortController.signal,
+      onCancellationRequested,
+    };
   }
 }

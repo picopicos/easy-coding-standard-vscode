@@ -1,0 +1,10 @@
+{
+  "configuration.title": "Easy Coding Standard",
+  "configuration.enabled.description": "Enable/disable Easy Coding Standard extension",
+  "configuration.executablePath.description": "Path to the ECS executable",
+  "configuration.configPath.description": "Path to the ECS configuration file (ecs.php). If empty, will search for ecs.php in the workspace.",
+  "configuration.memoryLimit.description": "Memory limit for the ECS process",
+  "configuration.xdebug.description": "Enable Xdebug for ECS",
+  "configuration.timeout.description": "Timeout for ECS command execution in milliseconds",
+  "configuration.extraArgs.description": "Extra arguments for ECS"
+} 

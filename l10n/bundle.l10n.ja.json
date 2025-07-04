@@ -1,0 +1,13 @@
+{
+  "status.ready": "Easy Coding Standard - 準備完了",
+  "status.disabled": "Easy Coding Standard - 無効",
+  "status.disabled.noWorkspaceFolder": "ワークスペースが開かれていません",
+  "status.disabled.notPhpFile": "PHPファイルではありません",
+  "status.disabled.ecsDisabled": "ECSが無効になっています",
+  "status.error": "Easy Coding Standard - エラー",
+  "status.error.executableNotFound": "ECS実行ファイルが見つかりません: {0}",
+  "status.error.failedToCheckStatus": "ECSのステータスを確認できませんでした",
+  "status.formatting": "Easy Coding Standard - フォーマット中...",
+  "error.failedToActivate": "Easy Coding Standard拡張機能の起動に失敗しました: {0}",
+  "error.failedToFormat": "ドキュメントのフォーマットに失敗しました: {0}"
+}

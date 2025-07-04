@@ -1,0 +1,10 @@
+{
+  "configuration.title": "Easy Coding Standard",
+  "configuration.enabled.description": "Easy Coding Standard拡張機能を有効/無効にする",
+  "configuration.executablePath.description": "ECS実行ファイルへのパス",
+  "configuration.configPath.description": "ECS設定ファイル（ecs.php）へのパス。空の場合、ワークスペース内でecs.phpを検索します。",
+  "configuration.memoryLimit.description": "ECSプロセスのメモリ制限",
+  "configuration.xdebug.description": "ECSでXdebugを有効にする",
+  "configuration.timeout.description": "ECSコマンド実行のタイムアウト（ミリ秒）",
+  "configuration.extraArgs.description": "ECSの追加引数"
+} 

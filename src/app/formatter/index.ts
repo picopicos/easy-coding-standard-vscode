@@ -1,1 +1,1 @@
-export * from './Formatter';
+export { generateFormattedTextEdits } from './formatter';

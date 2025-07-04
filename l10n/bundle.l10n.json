@@ -1,0 +1,13 @@
+{
+  "status.ready": "Easy Coding Standard - Ready",
+  "status.disabled": "Easy Coding Standard - Disabled",
+  "status.disabled.noWorkspaceFolder": "No workspace folder open",
+  "status.disabled.notPhpFile": "Not a PHP file",
+  "status.disabled.ecsDisabled": "ECS is disabled in settings",
+  "status.error": "Easy Coding Standard - Error",
+  "status.error.executableNotFound": "ECS executable not found: {0}. Please check your configuration.",
+  "status.error.failedToCheckStatus": "Failed to check ECS status",
+  "status.formatting": "Easy Coding Standard - Formatting...",
+  "error.failedToActivate": "Failed to activate Easy Coding Standard extension: {0}",
+  "error.failedToFormat": "Failed to format document: {0}"
+}
