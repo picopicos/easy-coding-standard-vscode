@@ -1,0 +1,109 @@
+{
+  "name": "easy-coding-standard",
+  "displayName": "Easy Coding Standard",
+  "description": "Easy Coding Standard extension for VSCode.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/picopicos/easy-coding-standard-vscode"
+  },
+  "homepage": "https://github.com/picopicos/easy-coding-standard-vscode",
+  "keywords": [
+    "php",
+    "ecs",
+    "easy-coding-standard",
+    "formatter"
+  ],
+  "bugs": {
+    "url": "https://github.com/picopicos/easy-coding-standard-vscode/issues"
+  },
+  "license": "MIT",
+  "publisher": "picopico",
+  "activationEvents": [
+    "onLanguage:php",
+    "workspaceContains:ecs.php",
+    "workspaceContains:Ecs.php"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Easy Coding Standard",
+      "properties": {
+        "easy-coding-standard.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable Easy Coding Standard extension"
+        },
+        "easy-coding-standard.executablePath": {
+          "type": "string",
+          "default": "vendor/bin/ecs",
+          "description": "Path to the ECS executable"
+        },
+        "easy-coding-standard.configPath": {
+          "type": "string",
+          "default": "ecs.php",
+          "description": "Path to the ECS configuration file (ecs.php). If empty, will search for ecs.php in the workspace."
+        },
+        "easy-coding-standard.clearCache": {
+          "type": "boolean",
+          "description": "Clear ECS cache before running"
+        },
+        "easy-coding-standard.memoryLimit": {
+          "type": "string",
+          "description": "Memory limit for the ECS process"
+        },
+        "easy-coding-standard.xdebug": {
+          "type": "boolean",
+          "description": "Enable Xdebug for ECS"
+        },
+        "easy-coding-standard.debug": {
+          "type": "boolean",
+          "description": "Enable debug mode for ECS"
+        },
+        "easy-coding-standard.timeout": {
+          "type": "number",
+          "default": 30000,
+          "description": "Timeout for ECS command execution in milliseconds"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "rollup --config rollup.config.ts --configPlugin esbuild",
+    "dev": "rollup --config rollup.config.ts --configPlugin esbuild --watch",
+    "format": "biome check --fix --unsafe",
+    "format:check": "biome check",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepackage": "pnpm run compile",
+    "build": "pnpm run package",
+    "package": "vsce package --out ecs.vsix --no-dependencies"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.5",
+    "rollup": "^4.44.1",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "execa": "^8.0.1",
+    "parse-diff": "^0.11.1"
+  }
+}

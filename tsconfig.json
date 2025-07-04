@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "ESNext",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "test/**/*", "scripts/**/*", "src/app/ExtensionConfig.ts"]
+}
