@@ -77,11 +77,13 @@
     "dev": "rollup --config rollup.config.ts --configPlugin esbuild --watch",
     "format": "biome check --fix --unsafe",
     "format:check": "biome check",
+    "format:ci": "biome ci --reporter=github",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "prepackage": "pnpm run compile",
-    "build": "pnpm run package",
-    "package": "vsce package --out ecs.vsix --no-dependencies"
+    "test:ci": "vitest run --coverage",
+    "prepackage": "npm run compile",
+    "build": "npm run package",
+    "package": "vsce package --out ecs.vsix"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
