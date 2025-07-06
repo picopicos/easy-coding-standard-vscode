@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import type { Application } from './app/Application';
 import { getCurrentConfig } from './Configuration';
 import { logger } from './logger';
 import type { Status } from './Status';
-import { l10n } from 'vscode';
 
 export class ECSDocumentFormattingEditProvider
   implements vscode.DocumentFormattingEditProvider

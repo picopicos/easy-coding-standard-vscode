@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import type { ECSConfig } from '../Configuration';
 import { logger } from '../logger';
 import type { Status } from '../Status';
 import { generateFormattedTextEdits } from './formatter/formatter';
-import { l10n } from 'vscode';
 
 export class Application {
   async generateTextEdits(
