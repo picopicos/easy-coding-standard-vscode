@@ -1,10 +1,10 @@
 // Entry point for the extension.
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import { Application } from './app/Application';
 import { ECSDocumentFormattingEditProvider } from './ECSDocumentFormattingEditProvider';
 import { logger } from './logger';
 import { Status } from './Status';
-import { l10n } from 'vscode';
 
 export async function activate(
   context: vscode.ExtensionContext,

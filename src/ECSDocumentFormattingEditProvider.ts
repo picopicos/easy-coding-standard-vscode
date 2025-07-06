@@ -1,9 +1,10 @@
+// @see https://code.visualstudio.com/blogs/2016/11/15/formatters-best-practices
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import type { Application } from './app/Application';
 import { getCurrentConfig } from './Configuration';
 import { logger } from './logger';
 import type { Status } from './Status';
-import { l10n } from 'vscode';
 
 export class ECSDocumentFormattingEditProvider
   implements vscode.DocumentFormattingEditProvider

@@ -1,8 +1,9 @@
+// @see https://code.visualstudio.com/api/ux-guidelines/status-bar
 import * as fs from 'node:fs/promises';
 import * as vscode from 'vscode';
+import { l10n } from 'vscode';
 import { type ECSConfig, getCurrentConfig } from './Configuration';
 import { logger } from './logger';
-import { l10n } from 'vscode';
 
 export enum ECSStatus {
   Ready = 'ready',

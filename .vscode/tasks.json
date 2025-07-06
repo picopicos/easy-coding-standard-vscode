@@ -6,7 +6,7 @@
 		{
 			"type": "shell",
 			"label": "compile",
-			"command": "pnpm",
+			"command": "npm",
 			"args": ["run", "compile"],
 			"group": {
 				"kind": "build",
@@ -33,7 +33,7 @@
 		{
 			"type": "shell",
 			"label": "watch",
-			"command": "pnpm",
+			"command": "npm",
 			"args": ["run", "watch"],
 			"group": "build",
 			"presentation": {

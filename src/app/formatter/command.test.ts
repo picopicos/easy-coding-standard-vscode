@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { createCommand, type CommandOptions } from './command';
+import { describe, expect, it } from 'vitest';
+import { type CommandOptions, createCommand } from './command';
 
 describe('createCommand', () => {
   it.each<{
