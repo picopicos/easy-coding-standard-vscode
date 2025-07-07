@@ -4,6 +4,11 @@ All notable changes to the "easy-coding-standard" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.0]
+
+- add Japanese support
+- update dependencies
+
 ## [0.0.4]
 
 - update README.md
