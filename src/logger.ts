@@ -1,15 +1,24 @@
 import * as vscode from 'vscode';
 
 class Logger {
+  private static instance: Logger;
+
   private readonly logOutputChannel: vscode.LogOutputChannel;
 
-  constructor() {
+  private constructor() {
     this.logOutputChannel = vscode.window.createOutputChannel(
       'Easy Coding Standard',
       {
         log: true,
       },
     );
+  }
+
+  static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+    return Logger.instance;
   }
 
   show(preserveFocus?: boolean) {
@@ -47,4 +56,4 @@ class Logger {
   }
 }
 
-export const logger = new Logger();
+export const logger = Logger.getInstance();
