@@ -19,6 +19,9 @@ jobs:
           node-version: 20
 
       - run: npm ci
+
+      - run: npm install -g vsce ovsx
+
       - run: npm run build
 
       - name: Upload VSIX artifact
@@ -28,10 +31,10 @@ jobs:
           path: ecs.vsix
 
       - name: Publish to VSCode Marketplace
-        run: npx vsce publish --packagePath ecs.vsix --pat "${{ secrets.VSCE_PAT }}"
+        run: vsce publish --packagePath ecs.vsix --pat "${{ secrets.VSCE_PAT }}"
 
       - name: Publish to Open VSX
-        run: npx ovsx publish ecs.vsix -p "${{ secrets.OVSX_PAT }}"
+        run: ovsx publish ecs.vsix -p "${{ secrets.OVSX_PAT }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
