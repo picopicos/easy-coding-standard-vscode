@@ -9,3 +9,5 @@ updates:
     ignore:
       - dependency-name: '@types/node'
       - dependency-name: '@types/vscode'
+      - dependency-name: 'execa'
+        versions: ['9.x'] # Can't build with execa 9.x

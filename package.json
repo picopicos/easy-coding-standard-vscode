@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@vscode/l10n": "^0.0.18",
-    "execa": "^9.6.0",
+    "execa": "^8.0.1",
     "parse-diff": "^0.11.1"
   },
   "license": "MIT",
