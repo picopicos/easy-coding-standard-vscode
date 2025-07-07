@@ -89,7 +89,7 @@
     "@biomejs/biome": "^2.0.6",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@types/node": "20.x",
+    "@types/node": "24.x",
     "@types/vscode": "^1.80.0",
     "@vitest/coverage-v8": "^3.2.4",
     "@vscode/test-cli": "^0.0.11",
