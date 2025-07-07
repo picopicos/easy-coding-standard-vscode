@@ -1,17 +1,19 @@
 <h1 align="center">Easy&nbsp;Coding&nbsp;Standard&nbsp;for&nbsp;VS&nbsp;Code</h1>
 
-<p align="center">
-  <img alt="GitHub release" src="https://img.shields.io/github/release-date/picopicos/easy-coding-standard-vscode">
-  <img alt="Marketplace downloads" src="https://img.shields.io/visual-studio-marketplace/d/picopico.easy-coding-standard">
-  <img alt="Marketplace version" src="https://img.shields.io/visual-studio-marketplace/v/picopico.easy-coding-standard?color=blue">
-  <img alt="Rating" src="https://img.shields.io/visual-studio-marketplace/r/picopico.easy-coding-standard">
-  <img alt="CI" src="https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/test.yml/badge.svg">
-  <img alt="License" src="https://img.shields.io/github/license/picopicos/easy-coding-standard-vscode?color=lightgray">
-  <br>
-</p>
+<div align="center">
+
+[![GitHub release](https://img.shields.io/github/release-date/picopicos/easy-coding-standard-vscode?label=Latest&nbsp;Release)](https://github.com/picopicos/easy-coding-standard-vscode/releases)
+[![VS Marketplace downloads](https://img.shields.io/visual-studio-marketplace/d/picopico.easy-coding-standard)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
+[![VS Marketplace version](https://img.shields.io/visual-studio-marketplace/v/picopico.easy-coding-standard?color=blue)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/picopico.easy-coding-standard)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard&ssr=false#review-details)
+[![CI (test)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/test.yml)
+[![CI (release)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/release.yml/badge.svg)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/release.yml)
+[![License](https://img.shields.io/github/license/picopicos/easy-coding-standard-vscode)](https://github.com/picopicos/easy-coding-standard-vscode/blob/main/LICENSE)
+
+</div>
 
 <p align="center">
-  <strong>English</strong> | <a href="README.ja.md">日本語</a>
+  <strong>English</strong> | <a href="https://github.com/picopicos/easy-coding-standard-vscode/blob/main/README.ja.md">日本語</a>
 </p>
 
 ## Features
