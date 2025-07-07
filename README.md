@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![GitHub release](https://img.shields.io/github/release-date/picopicos/easy-coding-standard-vscode?label=Latest&nbsp;Release)](https://github.com/picopicos/easy-coding-standard-vscode/releases)
+[![Visual Studio Marketplace Last Updated](https://img.shields.io/visual-studio-marketplace/last-updated/picopico.easy-coding-standard?cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
 [![VS Marketplace version](https://img.shields.io/visual-studio-marketplace/v/picopico.easy-coding-standard?color=blue&cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
 [![VS Marketplace downloads](https://img.shields.io/visual-studio-marketplace/d/picopico.easy-coding-standard?cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/picopico.easy-coding-standard?cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard&ssr=false&cacheSeconds=86400#review-details)
