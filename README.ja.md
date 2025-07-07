@@ -3,11 +3,10 @@
 <div align="center">
 
 [![GitHub release](https://img.shields.io/github/release-date/picopicos/easy-coding-standard-vscode?label=Latest&nbsp;Release)](https://github.com/picopicos/easy-coding-standard-vscode/releases)
-[![VS Marketplace downloads](https://img.shields.io/visual-studio-marketplace/d/picopico.easy-coding-standard)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
-[![VS Marketplace version](https://img.shields.io/visual-studio-marketplace/v/picopico.easy-coding-standard?color=blue)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/picopico.easy-coding-standard)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard&ssr=false#review-details)
+[![VS Marketplace version](https://img.shields.io/visual-studio-marketplace/v/picopico.easy-coding-standard?color=blue&cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
+[![VS Marketplace downloads](https://img.shields.io/visual-studio-marketplace/d/picopico.easy-coding-standard?cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/picopico.easy-coding-standard?cacheSeconds=86400)](https://marketplace.visualstudio.com/items?itemName=picopico.easy-coding-standard&ssr=false&cacheSeconds=86400#review-details)
 [![CI (test)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/test.yml)
-[![CI (release)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/release.yml/badge.svg)](https://github.com/picopicos/easy-coding-standard-vscode/actions/workflows/release.yml)
 [![License](https://img.shields.io/github/license/picopicos/easy-coding-standard-vscode)](https://github.com/picopicos/easy-coding-standard-vscode/blob/main/LICENSE)
 
 </div>
