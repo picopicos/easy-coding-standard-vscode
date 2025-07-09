@@ -21,6 +21,10 @@ class Logger {
     return Logger.instance;
   }
 
+  get outputChannel(): vscode.OutputChannel {
+    return this.logOutputChannel;
+  }
+
   show(preserveFocus?: boolean) {
     this.logOutputChannel.show(preserveFocus);
   }

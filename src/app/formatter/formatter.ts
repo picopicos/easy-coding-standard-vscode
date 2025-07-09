@@ -27,6 +27,9 @@ export type ECSOutput = {
   >;
 };
 
+/**
+ * @throws {ProcessError} if the ECS process failed
+ */
 export const generateFormattedTextEdits = async (
   document: vscode.TextDocument,
   config: ECSConfig,
