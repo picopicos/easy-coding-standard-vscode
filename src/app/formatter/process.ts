@@ -41,7 +41,13 @@ export const runEcsProcess = async (
   );
 
   try {
-    if (!(await isPhpSyntaxValid(documentPath, abortSignal))) {
+    if (
+      !(await isPhpSyntaxValid(
+        documentPath,
+        abortSignal,
+        config.workspaceFolder,
+      ))
+    ) {
       throw new PhpSyntaxError('PHP syntax is invalid');
     }
 
@@ -61,6 +67,7 @@ export const runEcsProcess = async (
       timeout: config.timeout,
       signal: abortSignal,
       reject: false,
+      cwd: config.workspaceFolder,
     });
     logger.debug('ECS process result', result);
 
@@ -77,10 +84,12 @@ export const runEcsProcess = async (
 export const isPhpSyntaxValid = async (
   filePath: string,
   abortSignal: AbortSignal,
+  cwd: string,
 ): Promise<boolean> => {
   const result = await execa('php', ['-l', filePath], {
     reject: false,
     signal: abortSignal,
+    cwd,
   });
   logger.debug('PHP syntax check result', result);
   return result.exitCode === 0;

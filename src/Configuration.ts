@@ -15,6 +15,7 @@ export type ECSConfig = {
   xdebug?: boolean;
   timeout: number;
   extraArgs: string[];
+  workspaceFolder: string;
 };
 
 export const getCurrentConfig = (workspaceUri: Uri): ECSConfig => {
@@ -39,6 +40,7 @@ export const getCurrentConfig = (workspaceUri: Uri): ECSConfig => {
     xdebug: xdebug ? true : undefined,
     timeout: config.get<number>('timeout', 30000),
     extraArgs: config.get<string[]>('extraArgs', []),
+    workspaceFolder: workspaceUri.fsPath,
   };
 
   logger.debug('Loaded current ECS config', currentConfig);
