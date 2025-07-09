@@ -9,5 +9,6 @@
   "status.error.failedToCheckStatus": "ECSのステータスを確認できませんでした",
   "status.formatting": "Easy Coding Standard - フォーマット中...",
   "error.failedToActivate": "Easy Coding Standard拡張機能の起動に失敗しました: {0}",
-  "error.failedToFormat": "ドキュメントのフォーマットに失敗しました: {0}"
+  "error.failedToFormat": "ドキュメントのフォーマットに失敗しました: {0}",
+  "error.openLog": "ログを表示"
 }

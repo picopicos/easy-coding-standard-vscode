@@ -4,6 +4,7 @@ import type { ECSConfig } from '../Configuration';
 import { logger } from '../logger';
 import type { Status } from '../Status';
 import { generateFormattedTextEdits } from './formatter/formatter';
+import { ProcessError } from './formatter/process';
 
 export class Application {
   async generateTextEdits(
@@ -36,11 +37,22 @@ export class Application {
         error instanceof Error ? error.message : String(error);
 
       status.error(errorMessage);
-      logger.error('Failed to format document', error);
+      if (error instanceof ProcessError) {
+        logger.error('Failed to format document', error.result);
+      } else {
+        logger.error(`Failed to format document: ${errorMessage}`, error);
+      }
 
-      vscode.window.showErrorMessage(
-        l10n.t('error.failedToFormat', errorMessage),
-      );
+      vscode.window
+        .showErrorMessage(
+          l10n.t('error.failedToFormat', errorMessage),
+          l10n.t('error.openLog'),
+        )
+        .then((action) => {
+          if (action === l10n.t('error.openLog')) {
+            logger.outputChannel.show();
+          }
+        });
       return [];
     } finally {
       onCancellationRequested.dispose();

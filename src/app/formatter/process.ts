@@ -1,4 +1,4 @@
-import { execa } from 'execa';
+import { type ExecaReturnValue, execa } from 'execa';
 import type * as vscode from 'vscode';
 import type { ECSConfig } from '../../Configuration';
 import { logger } from '../../logger';
@@ -25,9 +25,21 @@ export class AbortError extends Error {
   }
 }
 
+export class ProcessError extends Error {
+  constructor(
+    message: string,
+    public readonly result: ExecaReturnValue<string>,
+  ) {
+    super(message);
+    this.name = 'ECSProcessError';
+    this.result = result;
+  }
+}
+
 /**
  * @throws {PhpSyntaxError} if the PHP syntax is invalid
  * @throws {AbortError} if the formatting is cancelled
+ * @throws {ProcessError} if the ECS process failed
  */
 export const runEcsProcess = async (
   document: vscode.TextDocument,
@@ -73,6 +85,12 @@ export const runEcsProcess = async (
 
     if (result.isCanceled) {
       throw new AbortError('ECS formatting was cancelled');
+    }
+
+    // 0: no changes, 1: command failed, 2: changed code or found errors
+    // @see https://github.com/easy-coding-standard/easy-coding-standard/blob/main/src/Console/ExitCode.php
+    if (result.exitCode !== 0 && result.exitCode !== 2) {
+      throw new ProcessError('ECS process failed', result);
     }
 
     return result;

@@ -9,5 +9,6 @@
   "status.error.failedToCheckStatus": "Failed to check ECS status",
   "status.formatting": "Easy Coding Standard - Formatting...",
   "error.failedToActivate": "Failed to activate Easy Coding Standard extension: {0}",
-  "error.failedToFormat": "Failed to format document: {0}"
+  "error.failedToFormat": "Failed to format document: {0}",
+  "error.openLog": "Open Log"
 }

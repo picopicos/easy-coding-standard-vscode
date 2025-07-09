@@ -29,9 +29,16 @@ export async function activate(
     logger.error('Failed to activate Easy Coding Standard extension:', error);
 
     const errorMessage = error instanceof Error ? error.message : String(error);
-    vscode.window.showErrorMessage(
-      l10n.t('error.failedToActivate', errorMessage),
-    );
+    vscode.window
+      .showErrorMessage(
+        l10n.t('error.failedToActivate', errorMessage),
+        l10n.t('error.openLog'),
+      )
+      .then((action) => {
+        if (action === l10n.t('error.openLog')) {
+          logger.outputChannel.show();
+        }
+      });
 
     throw error;
   }

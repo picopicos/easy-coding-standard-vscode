@@ -72,9 +72,16 @@ export class Status implements vscode.Disposable {
         l10n.t('status.error.executableNotFound', config.executablePath),
       );
       logger.error(`ECS executable not found: ${config.executablePath}`, error);
-      vscode.window.showErrorMessage(
-        l10n.t('status.error.executableNotFound', config.executablePath),
-      );
+      vscode.window
+        .showErrorMessage(
+          l10n.t('status.error.executableNotFound', config.executablePath),
+          l10n.t('error.openLog'),
+        )
+        .then((action) => {
+          if (action === l10n.t('error.openLog')) {
+            logger.outputChannel.show();
+          }
+        });
       return false;
     }
 
