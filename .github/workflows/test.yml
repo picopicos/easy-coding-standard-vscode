@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      
+
       - name: Run Vitest
         run: npm run test:ci
       
@@ -35,3 +35,15 @@ jobs:
       - uses: github/codeql-action/analyze@v3
         with:
           category: '/language:typescript'
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm install -g vsce ovsx
+      - run: npm run compile
+      - run: npm run build
