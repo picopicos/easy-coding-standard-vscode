@@ -29,10 +29,7 @@ Formatting APIに対応しています。保存時に自動的にフォーマッ
 {
   "[php]": {
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
     "editor.defaultFormatter": "picopico.easy-coding-standard"
-    // "picopico.easy-coding-standard.executablePath": "path/to/vendor/bin/ecs", // デフォルトパスを変更する場合
-    // "picopico.easy-coding-standard.configPath": "path/to/ecs.php" // デフォルトパスを変更する場合
   }
 }
 ```
