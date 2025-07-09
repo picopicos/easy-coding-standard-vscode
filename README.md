@@ -29,10 +29,7 @@ Native support for Formatting API. Automatically runs formatter on save.
 {
   "[php]": {
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
     "editor.defaultFormatter": "picopico.easy-coding-standard"
-    // "picopico.easy-coding-standard.executablePath": "path/to/vendor/bin/ecs", // If you need to change the default path
-    // "picopico.easy-coding-standard.configPath": "path/to/ecs.php" // If you need to change the default path
   }
 }
 ```
