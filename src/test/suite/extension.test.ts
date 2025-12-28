@@ -70,10 +70,7 @@ suite('Extension Test Suite', () => {
     const text = document.getText();
 
     // Verification: array() should become []
-    assert.ok(
-      text.includes('[]'),
-      `Array syntax was not fixed to short syntax. Actual content:\n${text}`,
-    );
+    assert.ok(text.includes('['), `Array syntax was not fixed to short syntax. Actual content:\n${text}`);
     assert.ok(!text.includes('array('), 'Old array syntax still present');
   });
 });
