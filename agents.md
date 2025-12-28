@@ -135,21 +135,4 @@ We follow the **GitHub Flow**.
 
 #### PR Template
 
-Use the following format for PR descriptions:
-
-```markdown
-## Purpose
-<!-- WHY is this change needed? What problem does it solve? -->
-
-## Details
-<!-- WHAT was changed? Briefly describe the implementation details. -->
-
-## Verification
-<!-- HOW was it tested? -->
-- [ ] `npm run format` passed
-- [ ] `npm test` passed
-- [ ] Manual verification in VS Code Debugger
-
-## Related Issues
-<!-- Link to related issues using #issue_number. -->
-```
+Use the template defined in [.github/pull_request_template.md](.github/pull_request_template.md).
