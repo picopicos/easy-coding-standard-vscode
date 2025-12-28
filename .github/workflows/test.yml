@@ -39,8 +39,17 @@ jobs:
           tools: composer:v2
 
       - run: npm ci
-      # Install ECS for testing
-      - run: composer require symplify/easy-coding-standard --dev
+      - name: Install ECS for testing
+        run: composer require symplify/easy-coding-standard --dev
+
+      - name: Verify ECS version
+        run: vendor/bin/ecs --version
+
+      - name: Verify ECS functionality (Check ArraySyntaxFixer)
+        run: |
+          vendor/bin/ecs check e2e/fixtures/sample.php --config e2e/fixtures/ecs.php --no-interaction --no-progress-bar --clear-cache --no-ansi > ecs_output.txt 2>&1 || true
+          cat ecs_output.txt
+          grep "ArraySyntaxFixer" ecs_output.txt
 
       - name: Run E2E Test
         uses: coactions/setup-xvfb@v1
