@@ -22,6 +22,28 @@ jobs:
       - name: Run Biome
         run: npm run format:ci
 
+  e2e-test:
+    runs-on: ubuntu-latest
+    name: E2E Test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - run: npm ci
+      # Install ECS for testing
+      - run: composer require symplify/easy-coding-standard --dev
+
+      - name: Run E2E Test
+        uses: coactions/setup-xvfb@v1
+        with:
+          run: npm run test:e2e
+
   codeql:
     runs-on: ubuntu-latest
     permissions:
