@@ -27,7 +27,7 @@ suite('Extension Test Suite', () => {
       assert.fail('No workspace folder open');
     }
     const workspacePath = workspaceFolder.uri.fsPath;
-    
+
     const filePath = path.join(
       workspacePath,
       'src',
@@ -45,13 +45,17 @@ suite('Extension Test Suite', () => {
 
     // Open document
     const document = await vscode.workspace.openTextDocument(filePath);
-    const editor = await vscode.window.showTextDocument(document);
+    await vscode.window.showTextDocument(document);
 
     // Update configuration to point to local ECS and config
     const config = vscode.workspace.getConfiguration('easy-coding-standard');
-    await config.update('configPath', configPath, vscode.ConfigurationTarget.Workspace);
-    
-    // Assuming 'vendor/bin/ecs' is available in the workspace root or globally. 
+    await config.update(
+      'configPath',
+      configPath,
+      vscode.ConfigurationTarget.Workspace,
+    );
+
+    // Assuming 'vendor/bin/ecs' is available in the workspace root or globally.
     // In CI, we need to ensure dependencies are installed.
     // For now, we rely on default executablePath or set it if needed.
 
@@ -62,7 +66,10 @@ suite('Extension Test Suite', () => {
     const text = document.getText();
 
     // Verification: array() should become []
-    assert.ok(text.includes('[]'), 'Array syntax was not fixed to short syntax');
+    assert.ok(
+      text.includes('[]'),
+      'Array syntax was not fixed to short syntax',
+    );
     assert.ok(!text.includes('array('), 'Old array syntax still present');
   });
 });
