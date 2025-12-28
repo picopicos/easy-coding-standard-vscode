@@ -48,28 +48,20 @@ suite('Extension Test Suite', () => {
     await vscode.window.showTextDocument(document);
 
     // Update configuration to point to local ECS and config
-    const config = vscode.workspace.getConfiguration('easy-coding-standard');
-    await config.update(
-      'configPath',
-      configPath,
-      vscode.ConfigurationTarget.Workspace,
-    );
-
-    // Assuming 'vendor/bin/ecs' is available in the workspace root or globally.
-    // In CI, we need to ensure dependencies are installed.
-    // For now, we rely on default executablePath or set it if needed.
-
-    // Execute formatting
-    await vscode.commands.executeCommand('editor.action.formatDocument');
-
-    // Get text
-    const text = document.getText();
-
-    // Verification: array() should become []
-    assert.ok(
-      text.includes('[]'),
-      'Array syntax was not fixed to short syntax',
-    );
-    assert.ok(!text.includes('array('), 'Old array syntax still present');
-  });
+        const config = vscode.workspace.getConfiguration('easy-coding-standard');
+        await config.update('configPath', configPath, vscode.ConfigurationTarget.Workspace);
+        
+        // Set executable path explicitly
+        const executablePath = path.join(workspacePath, 'vendor', 'bin', 'ecs');
+        await config.update('executablePath', executablePath, vscode.ConfigurationTarget.Workspace);
+    
+        // Execute formatting
+        await vscode.commands.executeCommand('editor.action.formatDocument');
+    
+        // Get text
+        const text = document.getText();
+    
+        // Verification: array() should become []
+        assert.ok(text.includes('[]'), `Array syntax was not fixed to short syntax. Actual content:\n${text}`);
+        assert.ok(!text.includes('array('), 'Old array syntax still present');  });
 });
