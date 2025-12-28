@@ -77,7 +77,7 @@ export const runEcsProcess = async (
     );
     const result = await execa(config.executablePath, args, {
       timeout: config.timeout,
-      signal: abortSignal,
+      cancelSignal: abortSignal,
       reject: false,
       cwd: config.workspaceFolder,
     });
@@ -106,7 +106,7 @@ export const isPhpSyntaxValid = async (
 ): Promise<boolean> => {
   const result = await execa('php', ['-l', filePath], {
     reject: false,
-    signal: abortSignal,
+    cancelSignal: abortSignal,
     cwd,
   });
   logger.debug('PHP syntax check result', result);
