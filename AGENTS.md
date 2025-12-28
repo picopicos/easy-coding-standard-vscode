@@ -65,7 +65,8 @@ The extension follows a standard VS Code extension architecture with a focus on 
 │   ├── logger.ts        # Logging utility
 │   └── Status.ts        # Status bar management
 ├── l10n/                # Localization files
-├── test/                # Tests (if applicable, currently integrated in src or separate)
+├── e2e/                 # End-to-End tests (VS Code integration tests)
+├── test/                # (Deprecated/Unused)
 ├── biome.json           # Biome configuration (Linting/Formatting)
 ├── package.json         # Dependencies and scripts
 ├── rollup.config.ts     # Rollup build configuration
@@ -98,6 +99,16 @@ The extension follows a standard VS Code extension architecture with a focus on 
     # or
     npm run test:coverage
     ```
+-   **Run E2E Tests:**
+    ```bash
+    npm run test:e2e
+    ```
+    (Note: Requires a graphical environment or Xvfb on Linux)
+
+### Localization
+-   **Files:** `l10n/bundle.l10n.json` (English) and `l10n/bundle.l10n.ja.json` (Japanese).
+-   **Workflow:** When adding user-facing strings, update both JSON files.
+-   **Documentation:** Keep `README.md` and `README.ja.md` synchronized.
 
 ### Code Quality
 -   **Lint and Format:**
@@ -115,7 +126,10 @@ The extension follows a standard VS Code extension architecture with a focus on 
 ## 6. Guidelines for AI Agents
 
 -   **Code Style:** Strictly follow the existing coding style enforced by `biome`. Run `npm run format` before committing.
--   **Testing:** Write unit tests for new logic using `vitest`. Ensure tests are located alongside the source code or in a dedicated test directory as per project pattern.
+-   **Testing:**
+    -   Write unit tests for new logic using `vitest` in `src/`.
+    -   Write E2E tests for VS Code integration features in `e2e/`.
+-   **Localization:** Always implement multi-language support. Update `l10n/*.json` and `README*.md` files when modifying UI strings or features.
 -   **VS Code API:** Prefer using the latest stable VS Code API patterns.
 -   **Error Handling:** Use `logger.error` for internal errors and `vscode.window.showErrorMessage` for user-facing errors. Use `l10n` for all user-facing strings.
 
