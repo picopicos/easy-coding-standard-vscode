@@ -1,8 +1,11 @@
 import * as assert from 'node:assert';
 import * as path from 'node:path';
+import * as fs from 'node:fs';
 import * as vscode from 'vscode';
 
-suite('Extension Test Suite', () => {
+suite('Extension Test Suite', function () {
+  this.timeout(20000);
+
   vscode.window.showInformationMessage('Start all tests.');
 
   test('Extension should be present', () => {
@@ -30,6 +33,15 @@ suite('Extension Test Suite', () => {
 
     const filePath = path.join(workspacePath, 'e2e', 'fixtures', 'sample.php');
     const configPath = path.join(workspacePath, 'e2e', 'fixtures', 'ecs.php');
+    const executablePath = path.join(workspacePath, 'vendor', 'bin', 'ecs');
+
+    // Check paths
+    if (!fs.existsSync(executablePath)) {
+      assert.fail(`ECS executable not found at: ${executablePath}`);
+    }
+    if (!fs.existsSync(configPath)) {
+      assert.fail(`ECS config not found at: ${configPath}`);
+    }
 
     // Open document
     const document = await vscode.workspace.openTextDocument(filePath);
@@ -42,9 +54,8 @@ suite('Extension Test Suite', () => {
       configPath,
       vscode.ConfigurationTarget.Workspace,
     );
-
+    
     // Set executable path explicitly
-    const executablePath = path.join(workspacePath, 'vendor', 'bin', 'ecs');
     await config.update(
       'executablePath',
       executablePath,
@@ -53,6 +64,9 @@ suite('Extension Test Suite', () => {
 
     // Execute formatting
     await vscode.commands.executeCommand('editor.action.formatDocument');
+
+    // Wait for formatting to apply
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Get text
     const text = document.getText();
