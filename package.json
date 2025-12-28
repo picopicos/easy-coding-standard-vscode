@@ -38,6 +38,8 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run --coverage",
+    "compile-tests": "esbuild e2e/**/*.ts --bundle --platform=node --external:vscode --outdir=out/test --format=cjs --sourcemap",
+    "test:e2e": "npm run compile && npm run compile-tests && vscode-test",
     "prepackage": "npm run compile",
     "build": "npm run package",
     "package": "vsce package --out ecs.vsix"
