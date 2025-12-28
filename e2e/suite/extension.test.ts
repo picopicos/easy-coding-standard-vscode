@@ -6,6 +6,25 @@ import * as vscode from 'vscode';
 suite('Extension Test Suite', function () {
   this.timeout(20000);
 
+  teardown(async function () {
+    try {
+      const history = await vscode.commands.executeCommand<string[]>(
+        'easy-coding-standard.getLogHistory',
+      );
+      if (history && history.length > 0) {
+        console.log('::group::--- Extension Logs ---');
+        for (const log of history) {
+          console.log(log);
+        }
+        console.log('::endgroup::');
+      } else {
+        console.log('--- Extension Logs: No logs found ---');
+      }
+    } catch (error) {
+      console.error('Failed to retrieve extension logs:', error);
+    }
+  });
+
   vscode.window.showInformationMessage('Start all tests.');
 
   test('Extension should be present', () => {
