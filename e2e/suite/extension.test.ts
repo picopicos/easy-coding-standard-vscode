@@ -28,20 +28,8 @@ suite('Extension Test Suite', () => {
     }
     const workspacePath = workspaceFolder.uri.fsPath;
 
-    const filePath = path.join(
-      workspacePath,
-      'src',
-      'test',
-      'fixtures',
-      'sample.php',
-    );
-    const configPath = path.join(
-      workspacePath,
-      'src',
-      'test',
-      'fixtures',
-      'ecs.php',
-    );
+    const filePath = path.join(workspacePath, 'e2e', 'fixtures', 'sample.php');
+    const configPath = path.join(workspacePath, 'e2e', 'fixtures', 'ecs.php');
 
     // Open document
     const document = await vscode.workspace.openTextDocument(filePath);
