@@ -39,13 +39,15 @@
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run --coverage",
     "compile-tests": "esbuild e2e/**/*.ts --bundle --platform=node --external:vscode --outdir=out/test --format=cjs --sourcemap",
-    "test:e2e": "npm run compile && npm run compile-tests && vscode-test",
+    "compile:test-extension": "rollup -c rollup.test.config.ts --configPlugin esbuild",
+    "test:e2e": "npm run compile:test-extension && npm run compile-tests && vscode-test",
     "prepackage": "npm run compile",
     "build": "npm run package",
     "package": "vsce package --out ecs.vsix"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.2",
+    "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/node": "20.x",
