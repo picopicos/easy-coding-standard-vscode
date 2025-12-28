@@ -13,9 +13,12 @@ export default defineConfig([
     },
     plugins: [
       commonjs(),
-      nodeResolve(),
+      nodeResolve({
+        preferBuiltins: true,
+        exportConditions: ['node'],
+      }),
       esbuild({
-        target: 'node16',
+        target: 'node18',
         sourceMap: true,
       }),
     ],
