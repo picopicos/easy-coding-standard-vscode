@@ -22,8 +22,12 @@ suite('Extension Test Suite', () => {
 
   test('Should format PHP file', async () => {
     // Fixture path
-    const workspacePath =
-      vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
+    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+    if (!workspaceFolder) {
+      assert.fail('No workspace folder open');
+    }
+    const workspacePath = workspaceFolder.uri.fsPath;
+    
     const filePath = path.join(
       workspacePath,
       'src',
