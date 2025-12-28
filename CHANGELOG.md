@@ -4,6 +4,12 @@ All notable changes to the "easy-coding-standard" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.4]
+
+- Update all dependencies to latest versions
+- Add E2E tests and CI workflow
+- Add contribution guidelines and developer documentation
+
 ## [1.0.3]
 
 - fix failure to create cache file
