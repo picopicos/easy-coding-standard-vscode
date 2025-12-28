@@ -118,3 +118,38 @@ The extension follows a standard VS Code extension architecture with a focus on 
 -   **Testing:** Write unit tests for new logic using `vitest`. Ensure tests are located alongside the source code or in a dedicated test directory as per project pattern.
 -   **VS Code API:** Prefer using the latest stable VS Code API patterns.
 -   **Error Handling:** Use `logger.error` for internal errors and `vscode.window.showErrorMessage` for user-facing errors. Use `l10n` for all user-facing strings.
+
+## 7. GitHub Workflow
+
+We follow the **GitHub Flow**.
+
+### Branching Strategy
+-   **Main Branch:** `main` (Protected, deployable)
+-   **Feature Branches:** Create branches from `main` with descriptive names (e.g., `feature/add-config-option`, `fix/formatter-error`).
+
+### Pull Requests (PR)
+
+-   Create a Pull Request to merge your feature branch into `main`.
+-   **Assignee:** Assign yourself to the PR.
+-   **Labels:** Add appropriate labels (e.g., `enhancement`, `bug`, `documentation`, `dependencies`).
+
+#### PR Template
+
+Use the following format for PR descriptions:
+
+```markdown
+## Purpose
+<!-- WHY is this change needed? What problem does it solve? -->
+
+## Details
+<!-- WHAT was changed? Briefly describe the implementation details. -->
+
+## Verification
+<!-- HOW was it tested? -->
+- [ ] `npm run format` passed
+- [ ] `npm test` passed
+- [ ] Manual verification in VS Code Debugger
+
+## Related Issues
+<!-- Link to related issues using #issue_number. -->
+```
