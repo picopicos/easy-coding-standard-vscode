@@ -4,6 +4,12 @@ All notable changes to the "easy-coding-standard" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.5]
+
+- Update development dependencies to latest compatible versions
+- Update Biome schema to 2.4.2
+- Improve dependency update workflow with consolidated PR handling
+
 ## [1.0.4]
 
 - Update all dependencies to latest versions
