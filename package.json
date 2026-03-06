@@ -48,7 +48,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.2",
     "@rollup/plugin-alias": "^6.0.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-commonjs": "^29.0.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/node": "25.x",
     "@types/vscode": "^1.80.0",
