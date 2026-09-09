@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { type Uri, workspace } from 'vscode';
+import { findProjectRoot, resolveWithFallback } from './app/project-root';
 import { logger } from './logger';
 
 /**
@@ -15,48 +16,60 @@ export type ECSConfig = {
   xdebug?: boolean;
   timeout: number;
   extraArgs: string[];
-  workspaceFolder: string;
+  /**
+   * Directory ECS is executed in. This is the nearest directory containing the
+   * configured `configPath` (searched upward from the document), or the
+   * workspace folder when no document is given or nothing is found.
+   */
+  projectRoot: string;
 };
 
-export const getCurrentConfig = (workspaceUri: Uri): ECSConfig => {
+const DEFAULT_EXECUTABLE_PATH = 'vendor/bin/ecs';
+const DEFAULT_CONFIG_PATH = 'ecs.php';
+
+export const getCurrentConfig = async (
+  workspaceUri: Uri,
+  documentUri?: Uri,
+): Promise<ECSConfig> => {
   const config = workspace.getConfiguration(
     'easy-coding-standard',
-    workspaceUri,
+    documentUri ?? workspaceUri,
   );
   const memoryLimit = config.get<string>('memoryLimit') ?? '';
   const xdebug = config.get<boolean>('xdebug', false);
+  const rawExecutablePath =
+    config.get<string>('executablePath', DEFAULT_EXECUTABLE_PATH) ||
+    DEFAULT_EXECUTABLE_PATH;
+  const rawConfigPath =
+    config.get<string>('configPath', DEFAULT_CONFIG_PATH) ||
+    DEFAULT_CONFIG_PATH;
+
+  const workspaceFolder = workspaceUri.fsPath;
+  const projectRoot =
+    documentUri && !path.isAbsolute(rawConfigPath)
+      ? await findProjectRoot(
+          documentUri.fsPath,
+          workspaceFolder,
+          rawConfigPath,
+        )
+      : workspaceFolder;
 
   const currentConfig = {
     enabled: config.get<boolean>('enabled', true),
-    executablePath: resolvePath(
-      config.get<string>('executablePath', 'vendor/bin/ecs'),
-      workspaceUri.fsPath,
+    executablePath: await resolveWithFallback(
+      rawExecutablePath,
+      projectRoot,
+      workspaceFolder,
     ),
-    configPath: resolvePath(
-      config.get<string>('configPath', 'ecs.php'),
-      workspaceUri.fsPath,
-    ),
+    configPath: path.resolve(projectRoot, rawConfigPath),
     memoryLimit: memoryLimit === '' ? undefined : memoryLimit,
     xdebug: xdebug ? true : undefined,
     timeout: config.get<number>('timeout', 30000),
     extraArgs: config.get<string[]>('extraArgs', []),
-    workspaceFolder: workspaceUri.fsPath,
+    projectRoot,
   };
 
   logger.debug('Loaded current ECS config', currentConfig);
 
   return currentConfig;
-};
-
-const resolvePath = (targetPath: string, workspacePath: string): string => {
-  if (path.isAbsolute(targetPath)) {
-    return targetPath;
-  }
-
-  const resolvedPath = path.resolve(workspacePath, targetPath);
-  logger.debug(
-    `Resolved path: ${resolvedPath} (workspace: ${workspacePath}, path: ${targetPath})`,
-  );
-
-  return resolvedPath;
 };

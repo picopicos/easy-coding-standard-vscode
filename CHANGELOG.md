@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Make all settings resource-scoped so they can be configured per workspace folder in multi-root workspaces
 - Check the initial status against the workspace folder of the active editor instead of always the first folder
+- Detect the nearest `ecs.php` by walking up from the document to the workspace folder, so nested projects in a monorepo can use their own config
+- Resolve a relative `executablePath` from the detected project root, falling back to the workspace folder
 
 ## [1.0.5]
 

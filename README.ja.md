@@ -40,13 +40,17 @@ Formatting APIに対応しています。保存時に自動的にフォーマッ
 
 すべての設定はリソーススコープなので、ワークスペースフォルダごとに設定できます。[マルチルートワークスペース](https://code.visualstudio.com/docs/editor/multi-root-workspaces)では、各フォルダの`.vscode/settings.json`または`.code-workspace`ファイルの`settings`ブロックで、フォルダごとに異なるECS実行ファイルと`ecs.php`を指定できます。相対パスは、フォーマット対象ファイルを含むワークスペースフォルダを基準に解決されます。
 
+### モノレポ・ネストしたプロジェクト
+
+`configPath`が相対パス（既定の`ecs.php`）の場合、フォーマット対象ファイルのディレクトリからワークスペースフォルダまで上方向に探索し、最初に見つかったディレクトリをプロジェクトルートとして扱います。ECSはそのディレクトリを作業ディレクトリとして実行されるため、モノレポ内の各パッケージが独自の`ecs.php`を持てます。相対パスの`executablePath`は同じプロジェクトルートを基準に解決され、見つからない場合はワークスペースフォルダにフォールバックするので、ルートの`vendor/bin/ecs`をネストしたパッケージ間で共有できます。
+
 ## 設定
 
 | 設定 | デフォルト | 説明 |
 |---------|---------|-------------|
 | `easy-coding-standard.enabled` | `true` | Easy Coding Standard拡張機能を有効/無効にする |
-| `easy-coding-standard.executablePath` | `vendor/bin/ecs` | ECS実行ファイルへのパス |
-| `easy-coding-standard.configPath` | `ecs.php` | ECS設定ファイル（ecs.php）へのパス。空の場合、ワークスペース内でecs.phpを検索します。 |
+| `easy-coding-standard.executablePath` | `vendor/bin/ecs` | ECS実行ファイルへのパス。相対パスは検出されたプロジェクトルートを基準に解決され、見つからない場合はワークスペースフォルダを基準にします。 |
+| `easy-coding-standard.configPath` | `ecs.php` | ECS設定ファイル（ecs.php）へのパス。相対パスはドキュメントのディレクトリからワークスペースフォルダまで上方向に検索されるため、ネストしたプロジェクトごとに個別の設定を持てます。 |
 | `easy-coding-standard.memoryLimit` | `""` | ECSプロセスのメモリ制限 |
 | `easy-coding-standard.xdebug` | `false` | ECSでXdebugを有効にする |
 | `easy-coding-standard.timeout` | `30000` | ECSコマンド実行のタイムアウト（ミリ秒） |

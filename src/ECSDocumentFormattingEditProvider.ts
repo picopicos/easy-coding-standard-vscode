@@ -28,7 +28,7 @@ export class ECSDocumentFormattingEditProvider
     }
 
     // Use the same config during the formatting process as the one used to detect the document.
-    const config = getCurrentConfig(workspaceFolder.uri);
+    const config = await getCurrentConfig(workspaceFolder.uri, document.uri);
     return this.application.generateTextEdits(
       document,
       config,
