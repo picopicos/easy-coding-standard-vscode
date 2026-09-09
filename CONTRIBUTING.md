@@ -36,22 +36,22 @@ sequenceDiagram
 
 2. **Install dependencies:**
    ```bash
-   npm install
+   pnpm install
    ```
 
 ## Development
 
 - **Debugging**: Open the project in VS Code and press **F5** to launch the Extension Development Host.
-- **Build**: `npm run compile`
-- **Packaging**: Run `npm run package` to generate a `.vsix` file. You can install it manually via the "Install from VSIX..." option in the VS Code Extensions view.
+- **Build**: `pnpm run compile`
+- **Packaging**: Run `pnpm run package` to generate a `.vsix` file. You can install it manually via the "Install from VSIX..." option in the VS Code Extensions view.
 
 ## Testing & Quality
 
 | Type | Command | Description |
 |---|---|---|
-| **Unit Tests** | `npm test` | Logic verification using [Vitest](https://vitest.dev/). |
-| **E2E Tests** | `npm run test:e2e` | VS Code integration tests via [@vscode/test-cli](https://github.com/microsoft/vscode-test-cli). |
-| **Lint / Format** | `npm run format` | Code style enforcement using [Biome](https://biomejs.dev/). |
+| **Unit Tests** | `pnpm test` | Logic verification using [Vitest](https://vitest.dev/). |
+| **E2E Tests** | `pnpm run test:e2e` | VS Code integration tests via [@vscode/test-cli](https://github.com/microsoft/vscode-test-cli). |
+| **Lint / Format** | `pnpm run format` | Code style enforcement using [Biome](https://biomejs.dev/). |
 
 ## Localization (l10n)
 
@@ -62,5 +62,5 @@ sequenceDiagram
 
 Releases are automated via GitHub Actions on tag push.
 
-1. **Bump Version**: `npm version patch` (or minor/major)
+1. **Bump Version**: `pnpm version patch` (or minor/major)
 2. **Push**: `git push && git push --tags`

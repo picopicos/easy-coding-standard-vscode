@@ -79,29 +79,29 @@ The extension follows a standard VS Code extension architecture with a focus on 
 ### Setup
 1.  **Install Dependencies:**
     ```bash
-    npm install
+    pnpm install
     ```
 
 ### Development Scripts
 -   **Build (Watch Mode):**
     ```bash
-    npm run dev
+    pnpm run dev
     ```
 -   **Compile (Production):**
     ```bash
-    npm run compile
+    pnpm run compile
     ```
 
 ### Testing
 -   **Run Unit Tests:**
     ```bash
-    npm test
+    pnpm test
     # or
-    npm run test:coverage
+    pnpm run test:coverage
     ```
 -   **Run E2E Tests:**
     ```bash
-    npm run test:e2e
+    pnpm run test:e2e
     ```
     (Note: Requires a graphical environment or Xvfb on Linux)
 
@@ -113,19 +113,19 @@ The extension follows a standard VS Code extension architecture with a focus on 
 ### Code Quality
 -   **Lint and Format:**
     ```bash
-    npm run format
+    pnpm run format
     ```
     (Note: This uses `biome check --fix --unsafe`)
 
 ### Packaging
 -   **Create VSIX Package:**
     ```bash
-    npm run package
+    pnpm run package
     ```
 
 ## 6. Guidelines for AI Agents
 
--   **Code Style:** Strictly follow the existing coding style enforced by `biome`. Run `npm run format` before committing.
+-   **Code Style:** Strictly follow the existing coding style enforced by `biome`. Run `pnpm run format` before committing.
 -   **Testing:**
     -   Write unit tests for new logic using `vitest` in `src/`.
     -   Write E2E tests for VS Code integration features in `e2e/`.

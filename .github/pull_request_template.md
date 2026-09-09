@@ -6,8 +6,8 @@
 
 ## Verification
 <!-- HOW was it tested? -->
-- [ ] `npm run format` passed
-- [ ] `npm test` passed
+- [ ] `pnpm run format` passed
+- [ ] `pnpm test` passed
 - [ ] Manual verification in VS Code Debugger
 
 ## Related Issues
