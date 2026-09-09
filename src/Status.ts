@@ -34,7 +34,14 @@ export class Status implements vscode.Disposable {
         return status;
       }
 
-      const config = getCurrentConfig(workspaceFolders[0].uri);
+      // Settings are resource-scoped, so check against the folder that owns the
+      // active editor when possible; otherwise fall back to the first folder.
+      const activeDocumentUri = vscode.window.activeTextEditor?.document.uri;
+      const workspaceFolder =
+        (activeDocumentUri &&
+          vscode.workspace.getWorkspaceFolder(activeDocumentUri)) ||
+        workspaceFolders[0];
+      const config = getCurrentConfig(workspaceFolder.uri);
 
       try {
         await fs.access(config.executablePath);
