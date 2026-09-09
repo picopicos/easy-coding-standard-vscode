@@ -1,8 +1,8 @@
 {
   "configuration.title": "Easy Coding Standard",
   "configuration.enabled.description": "Easy Coding Standard拡張機能を有効/無効にする",
-  "configuration.executablePath.description": "ECS実行ファイルへのパス",
-  "configuration.configPath.description": "ECS設定ファイル（ecs.php）へのパス。空の場合、ワークスペース内でecs.phpを検索します。",
+  "configuration.executablePath.description": "ECS実行ファイルへのパス。相対パスは検出されたプロジェクトルートを基準に解決され、見つからない場合はワークスペースフォルダを基準にします。",
+  "configuration.configPath.description": "ECS設定ファイル（ecs.php）へのパス。相対パスはドキュメントのディレクトリからワークスペースフォルダまで上方向に検索されるため、ネストしたプロジェクトごとに個別の設定を持てます。",
   "configuration.memoryLimit.description": "ECSプロセスのメモリ制限",
   "configuration.xdebug.description": "ECSでXdebugを有効にする",
   "configuration.timeout.description": "ECSコマンド実行のタイムアウト（ミリ秒）",

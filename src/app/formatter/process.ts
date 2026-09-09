@@ -54,11 +54,7 @@ export const runEcsProcess = async (
 
   try {
     if (
-      !(await isPhpSyntaxValid(
-        documentPath,
-        abortSignal,
-        config.workspaceFolder,
-      ))
+      !(await isPhpSyntaxValid(documentPath, abortSignal, config.projectRoot))
     ) {
       throw new PhpSyntaxError('PHP syntax is invalid');
     }
@@ -79,7 +75,7 @@ export const runEcsProcess = async (
       timeout: config.timeout,
       cancelSignal: abortSignal,
       reject: false,
-      cwd: config.workspaceFolder,
+      cwd: config.projectRoot,
     });
     logger.debug('ECS process result', result);
 

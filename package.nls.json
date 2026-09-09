@@ -1,8 +1,8 @@
 {
   "configuration.title": "Easy Coding Standard",
   "configuration.enabled.description": "Enable/disable Easy Coding Standard extension",
-  "configuration.executablePath.description": "Path to the ECS executable",
-  "configuration.configPath.description": "Path to the ECS configuration file (ecs.php). If empty, will search for ecs.php in the workspace.",
+  "configuration.executablePath.description": "Path to the ECS executable. Relative paths are resolved from the detected project root, falling back to the workspace folder.",
+  "configuration.configPath.description": "Path to the ECS configuration file (ecs.php). Relative paths are searched upward from the document's directory to the workspace folder, so nested projects can each have their own config.",
   "configuration.memoryLimit.description": "Memory limit for the ECS process",
   "configuration.xdebug.description": "Enable Xdebug for ECS",
   "configuration.timeout.description": "Timeout for ECS command execution in milliseconds",

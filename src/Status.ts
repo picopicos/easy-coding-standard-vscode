@@ -41,7 +41,10 @@ export class Status implements vscode.Disposable {
         (activeDocumentUri &&
           vscode.workspace.getWorkspaceFolder(activeDocumentUri)) ||
         workspaceFolders[0];
-      const config = getCurrentConfig(workspaceFolder.uri);
+      const config = await getCurrentConfig(
+        workspaceFolder.uri,
+        activeDocumentUri,
+      );
 
       try {
         await fs.access(config.executablePath);

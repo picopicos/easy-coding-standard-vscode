@@ -40,13 +40,17 @@ You can automatically format document on save. If you need to format document ma
 
 All settings are resource-scoped, so they can be set per workspace folder. In a [multi-root workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces), each folder can point to its own ECS executable and `ecs.php` via its own `.vscode/settings.json` or the `settings` block of the `.code-workspace` file. Relative paths are resolved from the workspace folder that contains the file being formatted.
 
+### Monorepos and nested projects
+
+When `configPath` is relative (the default `ecs.php`), the extension walks up from the directory of the file being formatted to the workspace folder and uses the nearest directory that contains it as the project root. ECS runs with that directory as its working directory, so each package in a monorepo can ship its own `ecs.php`. A relative `executablePath` is resolved from the same project root and falls back to the workspace folder, which lets nested packages share a single root-level `vendor/bin/ecs`.
+
 ## Configuration
 
 | Setting | Default | Description |
 |---------|---------|-------------|
 | `easy-coding-standard.enabled` | `true` | Enable/disable Easy Coding Standard extension |
-| `easy-coding-standard.executablePath` | `vendor/bin/ecs` | Path to the ECS executable |
-| `easy-coding-standard.configPath` | `ecs.php` | Path to the ECS configuration file (ecs.php). If empty, will search for ecs.php in the workspace. |
+| `easy-coding-standard.executablePath` | `vendor/bin/ecs` | Path to the ECS executable. Relative paths are resolved from the detected project root, falling back to the workspace folder. |
+| `easy-coding-standard.configPath` | `ecs.php` | Path to the ECS configuration file (ecs.php). Relative paths are searched upward from the document's directory to the workspace folder, so nested projects can each have their own config. |
 | `easy-coding-standard.memoryLimit` | `""` | Memory limit for the ECS process |
 | `easy-coding-standard.xdebug` | `false` | Enable Xdebug for ECS |
 | `easy-coding-standard.timeout` | `30000` | Timeout for ECS command execution in milliseconds |
