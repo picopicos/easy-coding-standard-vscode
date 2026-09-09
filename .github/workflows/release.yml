@@ -14,15 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
 
-      - run: npm install -g vsce ovsx
-
-      - run: npm run build
+      - run: pnpm run build
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4
@@ -31,10 +31,10 @@ jobs:
           path: ecs.vsix
 
       - name: Publish to VSCode Marketplace
-        run: vsce publish --packagePath ecs.vsix --pat "${{ secrets.VSCE_PAT }}"
+        run: pnpm exec vsce publish --packagePath ecs.vsix --pat "${{ secrets.VSCE_PAT }}"
 
       - name: Publish to Open VSX
-        run: ovsx publish ecs.vsix -p "${{ secrets.OVSX_PAT }}"
+        run: pnpm exec ovsx publish ecs.vsix -p "${{ secrets.OVSX_PAT }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

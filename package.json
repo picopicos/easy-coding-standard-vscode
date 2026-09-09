@@ -28,6 +28,7 @@
   "engines": {
     "vscode": "^1.80.0"
   },
+  "packageManager": "pnpm@10.30.0",
   "main": "./dist/extension.js",
   "scripts": {
     "compile": "rollup --config rollup.config.ts --configPlugin esbuild",
@@ -40,10 +41,10 @@
     "test:ci": "vitest run --coverage",
     "compile-tests": "esbuild e2e/**/*.ts --bundle --platform=node --external:vscode --outdir=out/test --format=cjs --sourcemap",
     "compile:test-extension": "rollup -c rollup.test.config.ts --configPlugin esbuild",
-    "test:e2e": "npm run compile:test-extension && npm run compile-tests && vscode-test",
-    "prepackage": "npm run compile",
-    "build": "npm run package",
-    "package": "vsce package --out ecs.vsix"
+    "test:e2e": "pnpm run compile:test-extension && pnpm run compile-tests && vscode-test",
+    "prepackage": "pnpm run compile",
+    "build": "pnpm run package",
+    "package": "vsce package --no-dependencies --out ecs.vsix"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
@@ -55,7 +56,9 @@
     "@vitest/coverage-v8": "^4.1.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.2",
     "esbuild": "^0.27.3",
+    "ovsx": "^1.1.1",
     "rollup": "^4.59.0",
     "rollup-plugin-esbuild": "^6.2.1",
     "typescript": "^5.9.3",
