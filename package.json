@@ -86,34 +86,41 @@
       "properties": {
         "easy-coding-standard.enabled": {
           "type": "boolean",
+          "scope": "resource",
           "default": true,
           "description": "%configuration.enabled.description%"
         },
         "easy-coding-standard.executablePath": {
           "type": "string",
+          "scope": "resource",
           "default": "vendor/bin/ecs",
           "description": "%configuration.executablePath.description%"
         },
         "easy-coding-standard.configPath": {
           "type": "string",
+          "scope": "resource",
           "default": "ecs.php",
           "description": "%configuration.configPath.description%"
         },
         "easy-coding-standard.memoryLimit": {
           "type": "string",
+          "scope": "resource",
           "description": "%configuration.memoryLimit.description%"
         },
         "easy-coding-standard.xdebug": {
           "type": "boolean",
+          "scope": "resource",
           "description": "%configuration.xdebug.description%"
         },
         "easy-coding-standard.timeout": {
           "type": "number",
+          "scope": "resource",
           "default": 30000,
           "description": "%configuration.timeout.description%"
         },
         "easy-coding-standard.extraArgs": {
           "type": "array",
+          "scope": "resource",
           "default": [],
           "description": "%configuration.extraArgs.description%"
         }

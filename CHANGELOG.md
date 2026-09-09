@@ -4,6 +4,11 @@ All notable changes to the "easy-coding-standard" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+- Make all settings resource-scoped so they can be configured per workspace folder in multi-root workspaces
+- Check the initial status against the workspace folder of the active editor instead of always the first folder
+
 ## [1.0.5]
 
 - Update development dependencies to latest compatible versions

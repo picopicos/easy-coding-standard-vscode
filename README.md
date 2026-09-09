@@ -36,6 +36,10 @@ Native support for Formatting API. Automatically runs formatter on save.
 
 You can automatically format document on save. If you need to format document manually, press `Shift+Ctrl+F`/`Shift+⌘+F`.
 
+### Multi-root workspaces
+
+All settings are resource-scoped, so they can be set per workspace folder. In a [multi-root workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces), each folder can point to its own ECS executable and `ecs.php` via its own `.vscode/settings.json` or the `settings` block of the `.code-workspace` file. Relative paths are resolved from the workspace folder that contains the file being formatted.
+
 ## Configuration
 
 | Setting | Default | Description |
